@@ -9,11 +9,21 @@
 #define MAX_TAM 100
 
 
+void menu()
+{
+    printf("\n\n");
+    printf("      @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
+    printf("      @                           			            @\n");
+    printf("      @                        MENU      			    @\n");
+    printf("      @          DIGITAR PRODUTOS DA LISTA -> 1         @\n");
+    printf("      @         INSERIR ARQUIVO COM A LISTA -> 2        @\n");
+    printf("      @    GERAR ARQUIVO COM OS MELHORES PRECOS -> 3    @\n");
+    printf("      @                                                 @\n");
+    printf("      @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n\n");
+}
 
 
-
-
-int Recebe_Mercado(Mercado m[MAX],char arquivo_mercados[MAX_TAM],int cont_mercados)//L� o arquivo com o nome dos mercados e gera uma lista para cada mercado com seus produtos IDs e valores.
+int Recebe_Mercado(Mercado m[MAX],char arquivo_mercados[MAX_TAM],int cont_mercados)//Le o arquivo com o nome dos mercados e gera uma lista para cada mercado com seus produtos IDs e valores.
 {
 	
     char txt[MAX]=".txt";
@@ -93,9 +103,10 @@ int Recebe_Mercado(Mercado m[MAX],char arquivo_mercados[MAX_TAM],int cont_mercad
 
             token=strtok(NULL,"->");
         }
-
+		
         strcpy(abre_mercado,m[cont_mercados].nome_mercado);
         strcat(abre_mercado,txt);
+        
         Recebe_Produto(&m[cont_mercados],abre_mercado);
 		cont_mercados++;
 		
@@ -196,6 +207,7 @@ void Consulta_Menor_Preco(Mercado m[MAX],char nome[MAX_TAM],Lista_de_compras Lis
     Bloco *rider;
     int cont_linhas=0;
     LVazia(&aux);
+    Inicia_Compras(&l);
 
     while(cont_linhas<n_linhas)
     {
@@ -214,9 +226,77 @@ void Consulta_Menor_Preco(Mercado m[MAX],char nome[MAX_TAM],Lista_de_compras Lis
         cont_linhas++;
     }
 
+    if(l.tamanho==0)
+    {
+        printf("\n\n");
+        printf( "      @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
+        printf( "      @                                  @\n");
+        printf( "      @      PRODUTO NAO ENCONTRADO      @\n");
+        printf( "      @                                  @\n");
+        printf( "      @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n\n");
+        return;
+    }
+
     Ordena_Crescente(&l,0,l.tamanho-1,0,0);
 
     Insere_Produto(&Lista_final,l.best->valor,l.best->ID_Market,l.best->ID_produto,l.best->nome_produto,l.best->Market);
+}
+void Abre_Lista_De_Compras(char nome_arquivo[MAX_TAM],Lista_de_compras Lista_Final,Mercado m[MAX],int n_linhas)
+{
+    FILE *arquivo;
+    char txt[MAX_TAM]=".txt",leitor[MAX_TAM],*token;
+    arquivo==NULL;
+
+    while(arquivo==NULL)
+    {
+        arquivo=fopen(nome_arquivo,"r+");
+        if(arquivo!=NULL)
+        {
+            printf("\n\n");
+            printf( "      @@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
+            printf( "      @                          @\n");
+            printf( "      @      ARQUIVO ABERTO      @\n");
+            printf( "      @                          @\n");
+            printf( "      @@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
+        }
+        else
+        {
+            printf("\n\n");
+            printf( "      @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
+            printf( "      @                              @\n");
+            printf( "      @      ARQUIVO NAO ABERTO      @\n");
+            printf( "      @                              @\n");
+            printf( "      @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
+            printf("      INSIRA O VALIDO DO ARQUIVO COM OS PRODUTOS DA LISTA DE COMPRAS->");
+			gets(nome_arquivo);
+            strcat(nome_arquivo,txt);
+
+        }
+    }
+
+    while(fgets(leitor,MAX_TAM,arquivo)!=NULL)
+    {
+        char Nome[MAX_TAM];
+        int operador=0;
+        token=strtok(leitor,"->");
+
+        while(token!=NULL)
+        {   
+            strcpy(Nome,token);
+			
+            if(operador==0)
+            {
+                Consulta_Menor_Preco(m,Nome,Lista_Final,n_linhas);
+                operador++;                
+            }
+            
+            token=strtok(NULL,"->");
+        }
+        
+        
+    }
+
+    fclose(arquivo);
 }
 void Gera_Guia(Lista_de_compras Lista_Final)//Gera um arquivo .txt com uma lista dos menores pre�oss por produto e qual o mercado em que pode ser encontrado.
 {

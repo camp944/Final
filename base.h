@@ -23,7 +23,7 @@ struct Bloco{
 struct Produto_Custo{
 	
 	char nome_produto[MAX_TAM],Market[MAX_TAM];
-    int ID_produto,ID_Market;;
+    int ID_produto,ID_Market;
     float valor;
 };
 
