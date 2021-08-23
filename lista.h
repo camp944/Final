@@ -17,6 +17,6 @@ void Ordena_Crescente(Lista_de_compras *l, int i, int j, int auxi, int auxj);
 void Insere_Produto(Lista_de_compras *l, float valor, int ID_Market, int ID_Produto, char Nome_Produto[MAX_TAM], char Nome_Market[MAX_TAM]);
 
 
-//PARECE QUE EST� TUDO PRONTO AQUI
+//ESTA TUDO PRONTO AQUI
 
 #endif

@@ -131,3 +131,4 @@ void Insere_Produto(Lista_de_compras *l, float valor, int ID_Market, int ID_Prod
     l->tamanho++;
 }
 
+//PARECE

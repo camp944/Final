@@ -3,6 +3,7 @@
 #include <string.h>
 #include "lista.h"
 #include "func.h"
+#include <unistd.h>
 #include "base.h"
 #define MAX 10
 #define MAX_TAM 100
@@ -17,6 +18,8 @@ int main() {
 	char arquivo_mercados[MAX_TAM];
 	Lista_de_compras Lista_Final;
 	Inicia_Compras(&Lista_Final);
+	printf("\n\n      INSIRA NOME DO ARQUIVO QUE CONTEM OS MERCADOS->");
+	fflush(stdin);
 	gets(arquivo_mercados);
 
 	n_Mercados=Recebe_Mercado(m,arquivo_mercados,n_Mercados); 
@@ -43,7 +46,8 @@ int main() {
 
 				if(adiciona==1)
 				{
-					printf("      INSIRA O NOME DO PRODUTO SEM ACENTOS E SINAIS DE NASALIZAÇÃO->");
+					printf("      INSIRA O NOME DO PRODUTO SEM ACENTOS E SINAIS DE NASALIZACAO->");
+					fflush(stdin);
 					gets(nome_produto);
 					Consulta_Menor_Preco(m,nome_produto,Lista_Final,n_Mercados);
 				}
@@ -54,6 +58,7 @@ int main() {
 		{	
 			char get_lista[MAX_TAM],txt[MAX_TAM]=".txt";
 			printf("      INSIRA O NOME DO ARQUIVO COM OS PRODUTOS SA LISTA DE COMPRAS->");
+			fflush(stdin);
 			gets(get_lista);
 			strcat(get_lista,txt);
 			Abre_Lista_De_Compras(get_lista,Lista_Final,m,n_Mercados);	

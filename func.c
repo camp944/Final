@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <unistd.h>
 #include <string.h>
 #include "func.h"
 #include "base.h"
@@ -18,6 +18,7 @@ void menu()
     printf("      @          DIGITAR PRODUTOS DA LISTA -> 1         @\n");
     printf("      @         INSERIR ARQUIVO COM A LISTA -> 2        @\n");
     printf("      @    GERAR ARQUIVO COM OS MELHORES PRECOS -> 3    @\n");
+    printf("      @               ENCERRA O PROGRAMA -> 0           @\n");
     printf("      @                                                 @\n");
     printf("      @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n\n");
 }
@@ -26,6 +27,8 @@ void menu()
 int Recebe_Mercado(Mercado m[MAX],char arquivo_mercados[MAX_TAM],int cont_mercados)//Le o arquivo com o nome dos mercados e gera uma lista para cada mercado com seus produtos IDs e valores.
 {
 	
+    char cwd[MAX_PATH];
+	getcwd(cwd, sizeof(cwd));
     char txt[MAX]=".txt";
     strcat(arquivo_mercados,txt);
     
@@ -56,7 +59,7 @@ int Recebe_Mercado(Mercado m[MAX],char arquivo_mercados[MAX_TAM],int cont_mercad
             printf( "      @  ARQUIVO NAO ENCONTRADO  @\n");
             printf( "      @                          @\n");
             printf( "      @@@@@@@@@@@@@@@@@@@@@@@@@@@@\n\n");
-
+            fflush(stdin);
             printf("      INSIRA UM NOME PARA O ARQUIVO COM A INFORMACAO DOS MERCADOS -> ");
             fflush(stdin);
             gets(arquivo_mercados);
@@ -71,7 +74,9 @@ int Recebe_Mercado(Mercado m[MAX],char arquivo_mercados[MAX_TAM],int cont_mercad
 
     while((fgets(leitor,MAX_TAM,f_Mercados)!=NULL))
 	{
-		char abre_mercado[MAX_TAM];
+		char abre_mercado[MAX_PATH];
+        strcpy(abre_mercado,cwd);
+        strcat(abre_mercado,"\\Mercados\\");
 		token=strtok(leitor,"->");
 
         while(token!=NULL)
@@ -104,9 +109,8 @@ int Recebe_Mercado(Mercado m[MAX],char arquivo_mercados[MAX_TAM],int cont_mercad
             token=strtok(NULL,"->");
         }
 		
-        strcpy(abre_mercado,m[cont_mercados].nome_mercado);
+        strcat(abre_mercado,m[cont_mercados].nome_mercado);
         strcat(abre_mercado,txt);
-        
         Recebe_Produto(&m[cont_mercados],abre_mercado);
 		cont_mercados++;
 		
@@ -298,11 +302,11 @@ void Abre_Lista_De_Compras(char nome_arquivo[MAX_TAM],Lista_de_compras Lista_Fin
 
     fclose(arquivo);
 }
-void Gera_Guia(Lista_de_compras Lista_Final)//Gera um arquivo .txt com uma lista dos menores pre�oss por produto e qual o mercado em que pode ser encontrado.
+void Gera_Guia(Lista_de_compras Lista_Final)//Gera um arquivo .txt com uma lista dos menores precos por produto e qual o mercado em que pode ser encontrado.
 {
     FILE *arquivo;
     char *get_string;
-    arquivo=fopen("Lista de Compra.txt","w");
+    arquivo=fopen("Lista de Compras.txt","w");
 
     int cont_produtos=0;
     while(cont_produtos<Lista_Final.tamanho)
@@ -321,14 +325,16 @@ void Gera_Guia(Lista_de_compras Lista_Final)//Gera um arquivo .txt com uma lista
             }
             if(cont_op==1)
             {
-                
                 strcat(gera_linha,Lista_Final.best->Market);
             }
             if (cont_op==2)
             {	
-            	
+                char convertido[MAX_TAM];
+                strcat(gera_linha,"R$");
+            	sprintf(convertido, "%.2f", Lista_Final.best->valor);
+                strcat(gera_linha,convertido);
             }
-            
+            strcat(gera_linha,separador2);
             cont_op++;
         }
         strcat(gera_linha,"\n");
