@@ -83,34 +83,33 @@ void Troca(Produto_Custo *a, Produto_Custo *b)
 	*a = *b;
 	*b = aux;
 }
-void Particao(Lista_de_compras *l, int i, int j, int *auxi, int *auxj)
+void Particao(Lista_de_compras *l, int p, int r, int *i, int *j)
 {
     Produto_Custo pivo;
-	int idx = (i+j)/2;
-	*auxi = i;
-	*auxj = j;
+	int idx = (p+r)/2;
+	*i = p;
+	*j = r;
 	pivo = l->best[idx];
 
-	while(*auxi<=*auxj)
-	{
-		while(l->best[*auxi].valor < pivo.valor && *auxi < j)
-			*auxi = *auxi + 1;
-		while(l->best[*auxi].valor > pivo.valor && *auxj > i)
-			*auxj = *auxj - 1;
-		if(*auxi<=*auxj){
-			Troca(&l->best[*auxi], &l->best[*auxj]);
-			*auxi = *auxi + 1;
-			*auxj = *auxj - 1;
-			
+	while(*i<=*j){
+		while(l->best[*i].valor  < pivo.valor && *i < r)
+			*i = *i + 1;
+		while(l->best[*j].valor > pivo.valor && *j > p)
+			*j = *j - 1;
+		if(*i<=*j){
+			Troca(&l->best[*i], &l->best[*j]);
+			*i = *i + 1;
+			*j = *j - 1;
+		
 		}
 
 	}
+	
 	
 }
 void Ordena_Crescente(Lista_de_compras *l, int i, int j, int auxi, int auxj)
 {
 	
-
     Particao(l, i,j,&auxi,&auxj);
 	
 	if(auxj > i)
@@ -133,10 +132,10 @@ void Insere_Produto(Lista_de_compras *l, float valor, int ID_Market, int ID_Prod
 	l->best[l->tamanho].valor=valor;
     l->tamanho++;
 }
-void Imprime_LCompras(Lista_de_compras l)
+void Imprime_LCompras(Lista_de_compras *l)
 {
 	int cont_produtos=0;
-    while(cont_produtos<l.tamanho)
+    while(cont_produtos<l->tamanho)
     {  
         char gera_linha[MAX_TAM]="";
         char separador1[MAX_TAM]="\t[",separador2[MAX_TAM]="]";
@@ -148,17 +147,17 @@ void Imprime_LCompras(Lista_de_compras l)
             strcat(gera_linha,separador1);
             if(cont_op==0)
             {   
-                strcat(gera_linha,l.best->nome_produto);
+                strcat(gera_linha,l->best[cont_produtos].nome_produto);
             }
             if(cont_op==1)
             {
-                strcat(gera_linha,l.best->Market);
+                strcat(gera_linha,l->best[cont_produtos].Market);
             }
             if (cont_op==2)
             {	
                 char convertido[MAX_TAM];
                 strcat(gera_linha,"R$");
-            	sprintf(convertido, "%.2f", l.best->valor);
+            	sprintf(convertido, "%.2f", l->best[cont_produtos].valor);
                 strcat(gera_linha,convertido);
             }
             strcat(gera_linha,separador2);
@@ -170,4 +169,4 @@ void Imprime_LCompras(Lista_de_compras l)
     }
 }
 
-//PARECE
+//FALTA IMPRIMIR A LISTA

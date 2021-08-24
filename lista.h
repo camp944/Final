@@ -15,7 +15,7 @@ void Troca(Produto_Custo *a, Produto_Custo *b);
 void Particao(Lista_de_compras *l, int i, int j, int *auxi, int *auxj);
 void Ordena_Crescente(Lista_de_compras *l, int i, int j, int auxi, int auxj);
 void Insere_Produto(Lista_de_compras *l, float valor, int ID_Market, int ID_Produto, char Nome_Produto[MAX_TAM], char Nome_Market[MAX_TAM]);
-void Imprime_LCompras(Lista_de_compras l);
+void Imprime_LCompras(Lista_de_compras *l);
 
 //ESTA TUDO PRONTO AQUI
 

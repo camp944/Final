@@ -14,8 +14,8 @@ void menu()
 {
     printf("\n\n");
     printf("      @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
-    printf("      @                           			            @\n");
-    printf("      @                        MENU      			    @\n");
+    printf("      @                                                 @\n");
+    printf("      @                        MENU                     @\n");
     printf("      @          DIGITAR PRODUTOS DA LISTA -> 1         @\n");
     printf("      @         INSERIR ARQUIVO COM A LISTA -> 2        @\n");
     printf("      @    GERAR ARQUIVO COM OS MELHORES PRECOS -> 3    @\n");
@@ -23,7 +23,25 @@ void menu()
     printf("      @                                                 @\n");
     printf("      @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n\n");
 }
+void Get_Desktop_Adress(char cwd[MAX_PATH],char adress[MAX_PATH])
+{
 
+    char *token;
+    token=strtok(cwd,"\\");
+    char Desktop[MAX_PATH]="Desktop",copia[MAX_PATH];
+
+    while(token!=NULL)
+    {
+        strcpy(copia,token);
+        strcat(adress,copia);
+        strcat(adress,"\\");
+        if(strcmp(copia,Desktop)==0)
+        {
+            break;
+        }
+    }
+
+}
 
 int Recebe_Mercado(Mercado m[MAX],char arquivo_mercados[MAX_TAM],int cont_mercados)//Le o arquivo com o nome dos mercados e gera uma lista para cada mercado com seus produtos IDs e valores.
 {
@@ -205,7 +223,7 @@ void Recebe_Produto(Mercado *i,char nome_Mercado[MAX_TAM])//Gera a lista com os 
     fclose(f_Mercado);    
     
 }
-void Consulta_Menor_Preco(Mercado m[MAX],char nome[MAX_TAM],Lista_de_compras Lista_final,int n_linhas)//Compara os pree�os de um determinado produto para todos os mercados em que ele está disponível e adiciona-o a um lista com outros produtos prourados.
+void Consulta_Menor_Preco(Mercado m[MAX],char nome[MAX_TAM],Lista_de_compras *Lista_final,int n_linhas)//Compara os pree�os de um determinado produto para todos os mercados em que ele está disponível e adiciona-o a um lista com outros produtos prourados.
 {
     Mercado aux;
     Lista_de_compras l;
@@ -226,8 +244,8 @@ void Consulta_Menor_Preco(Mercado m[MAX],char nome[MAX_TAM],Lista_de_compras Lis
         {
             if(strcmp(rider->p.nome_produto,nome)==0)
             {
-                Insere_Produto(&l,rider->p.valor,m[cont_linhas].ID_mercado,rider->p.ID_produto,rider->p.nome_produto,m[cont_linhas].nome_mercado);
                 
+                Insere_Produto(&l,rider->p.valor,m[cont_linhas].ID_mercado,rider->p.ID_produto,rider->p.nome_produto,m[cont_linhas].nome_mercado);
                 break;
             }
             rider=rider->prox;
@@ -253,19 +271,19 @@ void Consulta_Menor_Preco(Mercado m[MAX],char nome[MAX_TAM],Lista_de_compras Lis
     Ordena_Crescente(&l,0,l.tamanho-1,0,0);
 
     
-
-    Insere_Produto(&Lista_final,l.best->valor,l.best->ID_Market,l.best->ID_produto,l.best->nome_produto,l.best->Market);
-    printf("\n\t[%s]\t[%s]\t[R$%f]\n",Lista_final.best[Lista_final.tamanho-1].nome_produto,Lista_final.best[Lista_final.tamanho-1].Market,Lista_final.best[Lista_final.tamanho-1].valor);
+    
+    Insere_Produto(Lista_final,l.best->valor,l.best->ID_Market,l.best->ID_produto,l.best->nome_produto,l.best->Market);
+    printf("\n\t[%s]\t[%s]\t[R$%.2f]\t[%d]\n",Lista_final->best[Lista_final->tamanho-1].nome_produto,Lista_final->best[Lista_final->tamanho-1].Market,Lista_final->best[Lista_final->tamanho-1].valor,Lista_final->tamanho);
 }
-void Abre_Lista_De_Compras(char nome_arquivo[MAX_TAM],Lista_de_compras Lista_Final,Mercado m[MAX],int n_linhas)
+void Abre_Lista_De_Compras(char nome_arquivo[MAX_TAM],Lista_de_compras *Lista_Final,Mercado m[MAX],int n_linhas)
 {
     FILE *arquivo;
     char txt[MAX_TAM]=".txt",leitor[MAX_TAM],*token;
-    arquivo==NULL;
-
+    arquivo=NULL;
     while(arquivo==NULL)
     {
-        arquivo=fopen(nome_arquivo,"r+");
+        arquivo=fopen(nome_arquivo,"rt");
+        
         if(arquivo!=NULL)
         {
             printf("\n\n");
@@ -314,43 +332,48 @@ void Abre_Lista_De_Compras(char nome_arquivo[MAX_TAM],Lista_de_compras Lista_Fin
 
     fclose(arquivo);
 }
-void Gera_Guia(Lista_de_compras Lista_Final)//Gera um arquivo .txt com uma lista dos menores precos por produto e qual o mercado em que pode ser encontrado.
+void Gera_Guia(Lista_de_compras *l)//Gera um arquivo .txt com uma lista dos menores precos por produto e qual o mercado em que pode ser encontrado.
 {
     FILE *arquivo;
     char *get_string;
-    arquivo=fopen("Lista de Compras.txt","w");
+    char cwd[MAX_PATH],adress[MAX_PATH]="";
+	getcwd(cwd, sizeof(cwd));
+    Get_Desktop_Adress(cwd,adress);
+    strcat(adress,"Lista de Compras.txt");
+    arquivo=fopen(adress,"w");
 
     int cont_produtos=0;
-    while(cont_produtos<Lista_Final.tamanho)
+    while(cont_produtos<l->tamanho)
     {  
         char gera_linha[MAX_TAM]="";
-        char separador1[MAX_TAM]="\t[",separador2[MAX_TAM]="]";
+        char separador0[MAX_TAM]="[",separador1[MAX_TAM]="\t\t[",separador2[MAX_TAM]="]";
         int cont_op=0;
         
         while(cont_op<3)
         {   
             
-            strcat(gera_linha,separador1);
             if(cont_op==0)
-            {   
-                strcat(gera_linha,Lista_Final.best->nome_produto);
+            {   strcat(gera_linha,separador0);
+                strcat(gera_linha,l->best[cont_produtos].nome_produto);
             }
             if(cont_op==1)
-            {
-                strcat(gera_linha,Lista_Final.best->Market);
+            {   
+                strcat(gera_linha,separador1);
+                strcat(gera_linha,l->best[cont_produtos].Market);
             }
             if (cont_op==2)
-            {	
+            {
+                strcat(gera_linha,separador1);
                 char convertido[MAX_TAM];
                 strcat(gera_linha,"R$");
-            	sprintf(convertido, "%.2f", Lista_Final.best->valor);
+            	sprintf(convertido, "%.2f", l->best[cont_produtos].valor);
                 strcat(gera_linha,convertido);
             }
             strcat(gera_linha,separador2);
             cont_op++;
         }
         strcat(gera_linha,"\n");
-        fputs(gera_linha,arquivo);
+		fputs(gera_linha,arquivo);
         cont_produtos++;
     }
 

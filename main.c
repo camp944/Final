@@ -36,7 +36,7 @@ int main() {
 			{
 				printf("\n\n");
 				printf("      @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
-				printf("      @                           			@\n");
+				printf("      @                                     @\n");
 				printf("      @     ADICONAR PRODUTO A LISTA -> 1   @\n");
 				printf("      @     VOLTAR AO MENU PRINCIPAL -> 0   @\n");
 				printf("      @                                     @\n");
@@ -49,7 +49,7 @@ int main() {
 					printf("      INSIRA O NOME DO PRODUTO SEM ACENTOS E SINAIS DE NASALIZACAO->");
 					fflush(stdin);
 					gets(nome_produto);
-					Consulta_Menor_Preco(m,nome_produto,Lista_Final,n_Mercados);
+					Consulta_Menor_Preco(m,nome_produto,&Lista_Final,n_Mercados);
 				}
 			}
 		}
@@ -61,14 +61,16 @@ int main() {
 			fflush(stdin);
 			gets(get_lista);
 			strcat(get_lista,txt);
-			Abre_Lista_De_Compras(get_lista,Lista_Final,m,n_Mercados);	
+			Abre_Lista_De_Compras(get_lista,&Lista_Final,m,n_Mercados);	
+			//printf("\n\t%d\n",Lista_Final.tamanho);
+
 	
 		}
 
 		if(select==3)
 		{
 			printf("\n\n");
-			Imprime_LCompras(Lista_Final);
+			Gera_Guia(&Lista_Final);
 		}
 
 	}
