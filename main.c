@@ -67,7 +67,8 @@ int main() {
 
 		if(select==3)
 		{
-			Gera_Guia(Lista_Final);
+			printf("\n\n");
+			Imprime_LCompras(Lista_Final);
 		}
 
 	}

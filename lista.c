@@ -57,6 +57,7 @@ void LImprime(Mercado *m)
 	Bloco *aux;
 	aux=m->first->prox;
 	
+	printf("\n\n");
 	while(aux!=NULL)
 	{
 		
@@ -67,6 +68,7 @@ void LImprime(Mercado *m)
 		
 		
 	}
+	printf("\n\n");
 }
 
 
@@ -89,27 +91,28 @@ void Particao(Lista_de_compras *l, int i, int j, int *auxi, int *auxj)
 	*auxj = j;
 	pivo = l->best[idx];
 
-    while(*auxi<=*auxj)
-    {
-        while(l->best[*auxi].valor<pivo.valor && *auxi < j)
-		{
-			*auxi++;
-		}
-		while(l->best[*auxj].valor > pivo.valor && *auxj > i)
-		{
-			*auxj--;
-		}
+	while(*auxi<=*auxj)
+	{
+		while(l->best[*auxi].valor < pivo.valor && *auxi < j)
+			*auxi = *auxi + 1;
+		while(l->best[*auxi].valor > pivo.valor && *auxj > i)
+			*auxj = *auxj - 1;
 		if(*auxi<=*auxj){
 			Troca(&l->best[*auxi], &l->best[*auxj]);
-			*auxi++;
-			*auxj--;
-		
+			*auxi = *auxi + 1;
+			*auxj = *auxj - 1;
+			
 		}
-    }
+
+	}
+	
 }
 void Ordena_Crescente(Lista_de_compras *l, int i, int j, int auxi, int auxj)
 {
+	
+
     Particao(l, i,j,&auxi,&auxj);
+	
 	if(auxj > i)
 	{
 		Ordena_Crescente(l,i,auxj,auxi,auxj);
@@ -129,6 +132,42 @@ void Insere_Produto(Lista_de_compras *l, float valor, int ID_Market, int ID_Prod
 	strcpy(l->best[l->tamanho].Market,Nome_Market);
 	l->best[l->tamanho].valor=valor;
     l->tamanho++;
+}
+void Imprime_LCompras(Lista_de_compras l)
+{
+	int cont_produtos=0;
+    while(cont_produtos<l.tamanho)
+    {  
+        char gera_linha[MAX_TAM]="";
+        char separador1[MAX_TAM]="\t[",separador2[MAX_TAM]="]";
+        int cont_op=0;
+        
+        while(cont_op<3)
+        {   
+            
+            strcat(gera_linha,separador1);
+            if(cont_op==0)
+            {   
+                strcat(gera_linha,l.best->nome_produto);
+            }
+            if(cont_op==1)
+            {
+                strcat(gera_linha,l.best->Market);
+            }
+            if (cont_op==2)
+            {	
+                char convertido[MAX_TAM];
+                strcat(gera_linha,"R$");
+            	sprintf(convertido, "%.2f", l.best->valor);
+                strcat(gera_linha,convertido);
+            }
+            strcat(gera_linha,separador2);
+            cont_op++;
+        }
+        strcat(gera_linha,"\n");
+		printf("%s",gera_linha);
+        cont_produtos++;
+    }
 }
 
 //PARECE

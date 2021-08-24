@@ -9,6 +9,7 @@
 #define MAX_TAM 100
 
 
+
 void menu()
 {
     printf("\n\n");
@@ -200,7 +201,7 @@ void Recebe_Produto(Mercado *i,char nome_Mercado[MAX_TAM])//Gera a lista com os 
            
         
     }
-
+    LImprime(i);
     fclose(f_Mercado);    
     
 }
@@ -212,23 +213,29 @@ void Consulta_Menor_Preco(Mercado m[MAX],char nome[MAX_TAM],Lista_de_compras Lis
     int cont_linhas=0;
     LVazia(&aux);
     Inicia_Compras(&l);
-
+    
     while(cont_linhas<n_linhas)
     {
         
         rider=m[cont_linhas].first->prox;
+        
+        
+        
 
         while(rider!=NULL)
         {
             if(strcmp(rider->p.nome_produto,nome)==0)
             {
                 Insere_Produto(&l,rider->p.valor,m[cont_linhas].ID_mercado,rider->p.ID_produto,rider->p.nome_produto,m[cont_linhas].nome_mercado);
+                
                 break;
             }
             rider=rider->prox;
         }
         cont_linhas++;
     }
+
+    
 
     if(l.tamanho==0)
     {
@@ -241,9 +248,14 @@ void Consulta_Menor_Preco(Mercado m[MAX],char nome[MAX_TAM],Lista_de_compras Lis
         return;
     }
 
+    
+
     Ordena_Crescente(&l,0,l.tamanho-1,0,0);
 
+    
+
     Insere_Produto(&Lista_final,l.best->valor,l.best->ID_Market,l.best->ID_produto,l.best->nome_produto,l.best->Market);
+    printf("\n\t[%s]\t[%s]\t[R$%f]\n",Lista_final.best[Lista_final.tamanho-1].nome_produto,Lista_final.best[Lista_final.tamanho-1].Market,Lista_final.best[Lista_final.tamanho-1].valor);
 }
 void Abre_Lista_De_Compras(char nome_arquivo[MAX_TAM],Lista_de_compras Lista_Final,Mercado m[MAX],int n_linhas)
 {

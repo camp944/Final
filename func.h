@@ -10,6 +10,7 @@
 #define MAX_TAM 100
 
 
+
 void menu();
 
 int Recebe_Mercado(Mercado m[MAX],char arquivo_mercados[MAX_TAM],int cont_mercados);//PRONTO
