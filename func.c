@@ -344,7 +344,7 @@ void Gera_Guia(Lista_de_compras *l,int n_mercado,Mercado m[MAX])//Gera um arquiv
 	getcwd(cwd, sizeof(cwd));
     Get_Desktop_Adress(cwd,adress);
     strcat(adress,"Lista de Compras.txt");
-    arquivo=fopen(adress,"w");
+    arquivo=fopen("Lista de Compras.txt","w");
     
 
     fputs("\t @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n",arquivo);
