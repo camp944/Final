@@ -32,6 +32,7 @@ void Get_Desktop_Adress(char cwd[MAX_PATH],char adress[MAX_PATH])
 
     while(token!=NULL)
     {
+        
         strcpy(copia,token);
         strcat(adress,copia);
         strcat(adress,"\\");
@@ -39,6 +40,8 @@ void Get_Desktop_Adress(char cwd[MAX_PATH],char adress[MAX_PATH])
         {
             break;
         }
+
+        token=strtok(NULL,"\\");
     }
 
 }
@@ -332,21 +335,30 @@ void Abre_Lista_De_Compras(char nome_arquivo[MAX_TAM],Lista_de_compras *Lista_Fi
 
     fclose(arquivo);
 }
-void Gera_Guia(Lista_de_compras *l)//Gera um arquivo .txt com uma lista dos menores precos por produto e qual o mercado em que pode ser encontrado.
+void Gera_Guia(Lista_de_compras *l,int n_mercado,Mercado m[MAX])//Gera um arquivo .txt com uma lista dos menores precos por produto e qual o mercado em que pode ser encontrado.
 {
     FILE *arquivo;
     char *get_string;
+    int i=0;
     char cwd[MAX_PATH],adress[MAX_PATH]="";
 	getcwd(cwd, sizeof(cwd));
     Get_Desktop_Adress(cwd,adress);
     strcat(adress,"Lista de Compras.txt");
     arquivo=fopen(adress,"w");
+    
 
+    fputs("\t @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n",arquivo);
+    fputs("\t @                                      @\n",arquivo);
+    fputs("\t @     LISTA COM OS MELHORES PREÇOS     @\n",arquivo);
+    fputs("\t @                                      @\n",arquivo);
+    fputs("\t @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n\n",arquivo);
+    fputs("   [Produto]\t\t[Mercado]\t\t[Preço]\n\n",arquivo);
+    
     int cont_produtos=0;
     while(cont_produtos<l->tamanho)
     {  
         char gera_linha[MAX_TAM]="";
-        char separador0[MAX_TAM]="[",separador1[MAX_TAM]="\t\t[",separador2[MAX_TAM]="]";
+        char separador0[MAX_TAM]="   [",separador1[MAX_TAM]="\t\t[",separador2[MAX_TAM]="]";
         int cont_op=0;
         
         while(cont_op<3)
@@ -360,6 +372,8 @@ void Gera_Guia(Lista_de_compras *l)//Gera um arquivo .txt com uma lista dos meno
             {   
                 strcat(gera_linha,separador1);
                 strcat(gera_linha,l->best[cont_produtos].Market);
+                i=0;
+                
             }
             if (cont_op==2)
             {
@@ -376,6 +390,8 @@ void Gera_Guia(Lista_de_compras *l)//Gera um arquivo .txt com uma lista dos meno
 		fputs(gera_linha,arquivo);
         cont_produtos++;
     }
+   
+    
 
     fclose(arquivo);
 }
