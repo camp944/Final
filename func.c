@@ -430,7 +430,7 @@ void Gera_Guia(Lista_de_compras *l,int n_mercado,Mercado m[MAX])//Gera um arquiv
     i=0;
     while(i<3)
     {
-        char convertido[MAX_TAM];
+        char convertido[MAX_PATH];
         sprintf(convertido,"\t[%s]\t\t  [%.1f]\n",Ranking_Mercados.best[cont_produtos-1-i].Market,Ranking_Mercados.best[cont_produtos-1-i].valor/l->tamanho*10);
         fputs(convertido,arquivo);
         i++;
