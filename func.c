@@ -5,8 +5,8 @@
 #include "func.h"
 #include "base.h"
 #include "lista.h"
-#define MAX 10
-#define MAX_TAM 100
+#define MAX 100
+#define MAX_TAM 260
 
 
 
@@ -23,13 +23,13 @@ void menu()
     printf("      @                                                 @\n");
     printf("      @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n\n");
 }
-void Get_Desktop_Adress(char cwd[MAX_PATH],char adress[MAX_PATH])
+void Get_Desktop_Adress(char cwd[MAX_TAM],char adress[MAX_TAM])
 {
 
     char *token;
     token=strtok(cwd,"\\");
     int ver=0;
-    char Desktop[MAX_PATH]="Desktop",copia[MAX_PATH];
+    char Desktop[MAX_TAM]="Desktop",copia[MAX_TAM];
 
     while(token!=NULL)
     {
@@ -55,7 +55,7 @@ void Get_Desktop_Adress(char cwd[MAX_PATH],char adress[MAX_PATH])
 int Recebe_Mercado(Mercado m[MAX],char arquivo_mercados[MAX_TAM],int cont_mercados)//Le o arquivo com o nome dos mercados e gera uma lista para cada mercado com seus produtos IDs e valores.
 {
 	
-    char cwd[MAX_PATH];
+    char cwd[MAX_TAM];
 	getcwd(cwd, sizeof(cwd));
     char txt[MAX]=".txt";
     strcat(arquivo_mercados,txt);
@@ -102,7 +102,7 @@ int Recebe_Mercado(Mercado m[MAX],char arquivo_mercados[MAX_TAM],int cont_mercad
 
     while((fgets(leitor,MAX_TAM,f_Mercados)!=NULL))
 	{
-		char abre_mercado[MAX_PATH];
+		char abre_mercado[MAX_TAM];
         strcpy(abre_mercado,cwd);
         strcat(abre_mercado,"\\Mercados\\");
 		token=strtok(leitor,"->");
@@ -346,7 +346,7 @@ void Gera_Guia(Lista_de_compras *l,int n_mercado,Mercado m[MAX])//Gera um arquiv
     FILE *arquivo;
     char *get_string;
     int i=0;
-    char cwd[MAX_PATH],adress[MAX_PATH]="";
+    char cwd[MAX_TAM],adress[MAX_TAM]="";
 	getcwd(cwd, sizeof(cwd));
     Get_Desktop_Adress(cwd,adress);
     strcat(adress,"Lista de Compras.txt");
@@ -417,7 +417,7 @@ void Gera_Guia(Lista_de_compras *l,int n_mercado,Mercado m[MAX])//Gera um arquiv
         cont_produtos++;
     }
    
-
+   
     
     Ordena_Crescente(&Ranking_Mercados,0,n_mercado-1,0,0);
     
@@ -430,7 +430,7 @@ void Gera_Guia(Lista_de_compras *l,int n_mercado,Mercado m[MAX])//Gera um arquiv
     i=0;
     while(i<3)
     {
-        char convertido[MAX_PATH];
+        char convertido[MAX_TAM];
         sprintf(convertido,"\t[%s]\t\t  [%.1f]\n",Ranking_Mercados.best[cont_produtos-1-i].Market,Ranking_Mercados.best[cont_produtos-1-i].valor/l->tamanho*10);
         fputs(convertido,arquivo);
         i++;

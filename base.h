@@ -1,6 +1,6 @@
 #ifndef BASE_H
 #define BASE_H
-#define MAX_TAM 100
+#define MAX_TAM 260
 
 typedef struct Produto_Custo Produto_Custo;
 typedef struct Lista_de_compras Lista_de_compras;

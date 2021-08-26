@@ -1,7 +1,7 @@
 #ifndef LISTA_H_
 #define LISTA_H_
 #include "base.h"
-#define MAX_TAM 100
+#define MAX_TAM 260
 
 
 

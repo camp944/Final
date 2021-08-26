@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include "lista.h"
 #include <string.h>
-#define MAX_TAM 100
+#define MAX_TAM 260
 
 
 

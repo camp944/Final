@@ -5,8 +5,8 @@
 #include "func.h"
 #include <unistd.h>
 #include "base.h"
-#define MAX 10
-#define MAX_TAM 100
+#define MAX 100
+#define MAX_TAM 260
 
 
 int main() {
