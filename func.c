@@ -417,8 +417,7 @@ void Gera_Guia(Lista_de_compras *l,int n_mercado,Mercado m[MAX])//Gera um arquiv
         cont_produtos++;
     }
    
-    printf("\n\tteste\n");
-    system("pause");
+
     
     Ordena_Crescente(&Ranking_Mercados,0,n_mercado-1,0,0);
     
