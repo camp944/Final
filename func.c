@@ -28,17 +28,26 @@ void Get_Desktop_Adress(char cwd[MAX_PATH],char adress[MAX_PATH])
 
     char *token;
     token=strtok(cwd,"\\");
+    int ver=0;
     char Desktop[MAX_PATH]="Desktop",copia[MAX_PATH];
 
     while(token!=NULL)
     {
+        
         strcpy(copia,token);
         strcat(adress,copia);
         strcat(adress,"\\");
-        if(strcmp(copia,Desktop)==0)
+        if(ver==1)
         {
-            break;
+            strcat(adress,"Desktop\\");
+            break;            
         }
+        if(strcmp(copia,"Users")==0)
+        {
+            ver=1;
+        }
+
+        token=strtok(NULL,"\\");
     }
 
 }
@@ -332,21 +341,40 @@ void Abre_Lista_De_Compras(char nome_arquivo[MAX_TAM],Lista_de_compras *Lista_Fi
 
     fclose(arquivo);
 }
-void Gera_Guia(Lista_de_compras *l)//Gera um arquivo .txt com uma lista dos menores precos por produto e qual o mercado em que pode ser encontrado.
+void Gera_Guia(Lista_de_compras *l,int n_mercado,Mercado m[MAX])//Gera um arquivo .txt com uma lista dos menores precos por produto e qual o mercado em que pode ser encontrado.
 {
     FILE *arquivo;
     char *get_string;
+    int i=0;
     char cwd[MAX_PATH],adress[MAX_PATH]="";
 	getcwd(cwd, sizeof(cwd));
     Get_Desktop_Adress(cwd,adress);
     strcat(adress,"Lista de Compras.txt");
     arquivo=fopen(adress,"w");
 
+    Lista_de_compras Ranking_Mercados;
+    Inicia_Compras(&Ranking_Mercados);
+    
+    
+    while(i<n_mercado)
+    {
+        Insere_Produto(&Ranking_Mercados,0,0,0,"",m[i].nome_mercado);
+        i++;
+    }
+
+
+    fputs("\t @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n",arquivo);
+    fputs("\t @                                      @\n",arquivo);
+    fputs("\t @     LISTA COM OS MELHORES PREÇOS     @\n",arquivo);
+    fputs("\t @                                      @\n",arquivo);
+    fputs("\t @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n\n",arquivo);
+    fputs("   [Produto]\t\t[Mercado]\t\t[Preço]\n\n",arquivo);
+    
     int cont_produtos=0;
     while(cont_produtos<l->tamanho)
     {  
         char gera_linha[MAX_TAM]="";
-        char separador0[MAX_TAM]="[",separador1[MAX_TAM]="\t\t[",separador2[MAX_TAM]="]";
+        char separador0[MAX_TAM]="   [",separador1[MAX_TAM]="\t\t[",separador2[MAX_TAM]="]";
         int cont_op=0;
         
         while(cont_op<3)
@@ -360,6 +388,18 @@ void Gera_Guia(Lista_de_compras *l)//Gera um arquivo .txt com uma lista dos meno
             {   
                 strcat(gera_linha,separador1);
                 strcat(gera_linha,l->best[cont_produtos].Market);
+                i=0;
+                
+                while(i<n_mercado)
+                {
+                    if(strcmp(l->best[cont_produtos].Market,Ranking_Mercados.best[i].Market)==0)
+                    {
+                        Ranking_Mercados.best[i].valor=Ranking_Mercados.best[i].valor+1;
+                        break;
+                    }
+                    i++;
+                }
+                
             }
             if (cont_op==2)
             {
@@ -375,6 +415,26 @@ void Gera_Guia(Lista_de_compras *l)//Gera um arquivo .txt com uma lista dos meno
         strcat(gera_linha,"\n");
 		fputs(gera_linha,arquivo);
         cont_produtos++;
+    }
+   
+    printf("\n\tteste\n");
+    system("pause");
+    
+    Ordena_Crescente(&Ranking_Mercados,0,n_mercado-1,0,0);
+    
+    fputs("\n\n\n\t @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n",arquivo);
+    fputs("\t @                                         @\n",arquivo);
+    fputs("\t @     MERCADOS COM OS MELHORES PREÇOS     @\n",arquivo);
+    fputs("\t @                                         @\n",arquivo);
+    fputs("\t @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n\n",arquivo);
+    fputs("\t[Mercado]\t\t  [Pontos/10]\n\n",arquivo);
+    i=0;
+    while(i<3)
+    {
+        char convertido[MAX_TAM];
+        sprintf(convertido,"\t[%s]\t\t  [%.1f]\n",Ranking_Mercados.best[cont_produtos-1-i].Market,Ranking_Mercados.best[cont_produtos-1-i].valor/l->tamanho*10);
+        fputs(convertido,arquivo);
+        i++;
     }
 
     fclose(arquivo);

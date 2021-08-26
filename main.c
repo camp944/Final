@@ -70,7 +70,7 @@ int main() {
 		if(select==3)
 		{
 			printf("\n\n");
-			Gera_Guia(&Lista_Final);
+			Gera_Guia(&Lista_Final,n_Mercados,m);
 		}
 
 	}
