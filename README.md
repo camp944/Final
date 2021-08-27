@@ -120,5 +120,11 @@
 	
 :point_right: Opção 3:
 	
+<p>Após inserir os produtos escolhidos, seja usando a opção 1 ou a opção 2, é criado um arquivo .txt (Lista de Compras.txt) na área de trabalho contendo em qual mercado cada produto se encontra com o menor preço e o ranking dos mercados melhor avaliado de acordo com o preço dos itens selecionados.<p>
+	
+- Exemplo da Lista de Compras gerado a partir da Lista inserida na opção 2:
+	
+
+<img src="https://user-images.githubusercontent.com/78819692/131125390-f90bbe4a-5bf2-4c56-b9f4-7cdd84f7dbe9.png" width="400">
 	
 ## Custo computacional
