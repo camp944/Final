@@ -3,29 +3,29 @@
 
 # Trabalho AEDS|CEFET
 <!--ts-->
-* [Sobre](#Sobre-rockey)
+* [Sobre](#rockey-Sobre)
 
-* [Pré requisitos](#Pré-requisitos-computer)
+* [Pré requisitos](#computer-Pré-requisitos)
 
-* [Execução dos testes | Descrição do Programa](#Execução-dos-testes-gear)    
+* [Execução dos testes | Descrição do Programa](#gear-Execução-dos-testes)    
 	
 	* [Abertura dos arquivos](#Abertura-da-pasta-dos-arquivos)
 
 	* [Menu](#Menu) 
  
-* [Custo computacional](#Custo-computacional)
+* [Custo computacional](#wrench-Custo-computacional)
  <!--te-->  
 
 
-## Sobre :rocket: 
+## :rocket: Sobre
 
   <p>Esse projeto é uma aplicação que seleciona a partir dos dados dos produtos dos mercados (varejos em geral) cadastrados os melhores preços escolhidos pelo usuário, imprimindo e criando um arquivo .txt dos resultados obtidos <p>
 
-## Pré-requisitos :computer:
+## :computer: Pré-requisitos
 
 <p>[Informar modo de execução] <p>
 
-## Execução dos testes :gear:
+## :gear: Execução dos testes
 <p>Execução do programa a partir do arquivo 'teste' presente no repositório<p>
 
 ![insira](https://user-images.githubusercontent.com/78819692/131023845-99c5d825-d755-445f-aaaf-d6f2bd08b7f5.png)
@@ -127,4 +127,4 @@
 
 <img src="https://user-images.githubusercontent.com/78819692/131125390-f90bbe4a-5bf2-4c56-b9f4-7cdd84f7dbe9.png" width="400">
 	
-## Custo computacional
+## :wrench: Custo computacional
