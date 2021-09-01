@@ -3,14 +3,20 @@
 
 
 
-<div align="center">	
+
+
+<h1 align="center">
+ Trabalho AEDS|CEFET 
+</h1>
+
+<h4 align="center">	
   Esse projeto é uma aplicação que seleciona a partir dos dados dos produtos dos mercados (varejos em geral) cadastrados os melhores preços escolhidos pelo usuário, imprimindo e criando um arquivo .txt dos resultados obtidos 
-</div>
-
-
-# Trabalho AEDS|CEFET 
+</h4>
+<h1></h1>
 
 <!--ts-->
+* [Sobre](#Sobre)
+
 * [Como funciona](#rockey-Como-funciona)
 
 * [Pré requisitos](#computer-Pré-requisitos)
@@ -25,6 +31,20 @@
  
 	* [Leitura inicial dos arquivos](#Leitura-inicial-dos-arquivos-txt-cadastrados)
  <!--te-->  
+
+
+## Sobre 
+
+-  Nos dias atuais a necessidade de otimização do tempo tem sido primordial devido a rotina cada vez mais acelerada. Devido à essa falta de tempo, muitas das vezes, as pessoas não têm a possibilidade de comparar preços, deixando de economizar um dinheiro que parece pouco em um primeiro momento, mas que ao longo do tempo poderá fazer falta.
+Portanto, avaliando essa necessidade, surge a proposta de um sistema que permite a partir dos interesses de compra do usuário, a busca dos produtos de melhores preço, ecomizando tanto o tempo quanto o dinheiro desse usuário. Diante desse fato, e seguindo alguns sistemas já criado como presente nos sites [Zoom](https://www.zoom.com.br) e [Buscapé](https://www.buscape.com.br) nossa aplicação tem como objetivo buscar essa facilitação para esse usuário.<p>
+
+- Desafios a serem cumpridos:
+ 
+ :white_check_mark: Lista dinâmica 
+ 
+ :white_check_mark: Lista estática
+ 
+ :white_check_mark: Ordenação: QuickShort 
 
 
 ## :rocket: Como funciona
