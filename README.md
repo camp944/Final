@@ -30,6 +30,8 @@
 * [Custo computacional](#wrench-Custo-computacional)
  
 	* [Leitura inicial dos arquivos](#Leitura-inicial-dos-arquivos-txt-cadastrados)
+
+	* [Opção 1](#Opção-1)
  <!--te-->  
 
 
@@ -257,4 +259,40 @@ while(fgets(leitor,MAX_TAM,f_Mercado)!=NULL) // Le P vezes ( P = qtidade de prod
 todos esses loops que irá acontecer a cada produto cadastrado, teremos o custo de 17.
 - Portanto, somando esses custos, temos o custo para a leitura dos arquivos separado de cada mercado de (17+10)*P = <strong>27P</strong>
 	
-:warning: A variável P foi usada para facilitação matemática, cada mercado não necessariamente precisa ter a mesma quantidade de produtos.
+> :warning: A variável P foi usada em todos os mercados para facilitação matemática, cada mercado não necessariamente precisa ter a mesma quantidade de produtos.
+	
+<h1></h1>
+	
+#### Opção 1
+	
+ Ao escolher a opção (DIGITAR PRODUTOS DA LISTA) a função chamada Consulta_Menor_Preco possui dois trechos de código no qual define seu custo computacional. O primeiro trecho refere-se a estrutura While no qual irá procurar em cada mercado o produto selecionado e adiciona-lo a uma lista estática.
+
+:exclamation: Trecho de código pertencente a função `Consulta_Menor_Preco` :
+	
+```sh
+	
+   while(cont_linhas<n_linhas) //Entrará N vezes, N = número de mercados
+    {
+        rider=m[cont_linhas].first->prox;  //+1
+        while(rider!=NULL)  //Irá percorrer todo a lista de produtos do mercado até encontrar 
+        {
+            if(strcmp(rider->p.nome_produto,nome)==0) //+1
+            {                
+                Insere_Produto(&l,rider->p.valor,m[cont_linhas].ID_mercado,rider->p.ID_produto,rider->p.nome_produto,m[cont_linhas].nome_mercado); //6
+                break;
+            }
+            rider=rider->prox;  //+1
+        }
+        cont_linhas++; //+1
+    }
+```
+	
+- No primeiro While irá percorrer N vezes, sendo N o número de mercados cadastrados. Ignorando o segundo While (interno a esse), temos que a cada loop dessa primeiro While teremos o custo de +2 a cada loop.
+- Já no segundo While (interno) irá percorrer por todos produtos cadastrados ate encontrar o produto selecionado pelo usuário. <strong> Para fins de facilitação matemática iremos considerar a variável P para a quantidade de produtos em todos os mercados e que encontraremos esse produto sempre no meio dessa lista, ou seja, P/2 </strong>. Sendo assim, esse While irá percorrer P/2 vezes e, a cada loop, irá realizar +2 de custo e, uma vez o IF sendo validado, +6 de custo referente a função `Insere_Produto`.
+- Portanto, o custo geral desse While será de N(2+2P/2+6) = 2N + PN + 6N = <strong>8N + PN</strong>.
+
+\
+A segunda parte do trecho dentro da função  Consulta_Menor_Preco é logo após o While comentado, em que assim que adicionado dentro da lista as informações do produto (ID,nome,preço) de cada mercado no qual ele se encontra, é chamado a função `Ordena_Crescente`, em que utilizará do modelo de ordenação <strong>QuickShort</strong> para ordenar o produto em ordem de preço crescente dentro dessa lista 
+	
+
+ `Ordena_Crescente`:  Utilizando da literatura, sabendo que essa função utiliza-se do método de ordenação <strong>QuickShort</strong>, temos como caso médio <img src="https://user-images.githubusercontent.com/78819692/131732133-5f09ebb2-607b-4059-a8f0-746f6ac8501f.png" width="70"> matematicamente provada como demostrado no site [khanacademy](https://www.khanacademy.org/computing/computer-science/algorithms/quick-sort/a/analysis-of-quicksort). Como N na equação significa a quantidade de elementos dentro dessa lista a ser ordenada e, considerando que cada mercado tem um produto do qual o usuário escolheu, podemos substituir essa variável N como sendo a quantidade de mercados cadastrados.
