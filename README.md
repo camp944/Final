@@ -265,7 +265,7 @@ todos esses loops que irá acontecer a cada produto cadastrado, teremos o custo 
 	
 #### Opção 1
 	
- Ao escolher a opção (DIGITAR PRODUTOS DA LISTA) a função chamada Consulta_Menor_Preco possui dois trechos de código no qual define seu custo computacional. O primeiro trecho refere-se a estrutura While no qual irá procurar em cada mercado o produto selecionado e adiciona-lo a uma lista estática.
+ Ao escolher a opção 1_(DIGITAR PRODUTOS DA LISTA) a função chamada Consulta_Menor_Preco possui dois trechos de código no qual define seu custo computacional. O primeiro trecho refere-se a estrutura While no qual irá procurar em cada mercado o produto selecionado e adiciona-lo a uma lista estática.
 
 :exclamation: Trecho de código pertencente a função `Consulta_Menor_Preco` :
 	
@@ -296,3 +296,12 @@ A segunda parte do trecho dentro da função  Consulta_Menor_Preco é logo após
 	
 
  `Ordena_Crescente`:  Utilizando da literatura, sabendo que essa função utiliza-se do método de ordenação <strong>QuickShort</strong>, temos como caso médio <img src="https://user-images.githubusercontent.com/78819692/131732133-5f09ebb2-607b-4059-a8f0-746f6ac8501f.png" width="70"> matematicamente provada como demostrado no site [khanacademy](https://www.khanacademy.org/computing/computer-science/algorithms/quick-sort/a/analysis-of-quicksort). Como N na equação significa a quantidade de elementos dentro dessa lista a ser ordenada e, considerando que cada mercado tem um produto do qual o usuário escolheu, podemos substituir essa variável N como sendo a quantidade de mercados cadastrados.
+	
+- Juntando esses valores, teremos como custo na opção 1 o custo de <img src="https://user-images.githubusercontent.com/78819692/131744845-d20c8f7e-b214-4b67-88be-9096086eaa10.png" width="100"> , sendo:
+	
+	> N o número de mercados cadastrados;
+	
+	> P a quantidade de produtos cadastrados em cada mercado;
+	
+	> K a quantidade de produtos escolhidos pelo usuário.
+	
