@@ -299,9 +299,9 @@ A segunda parte do trecho dentro da função  Consulta_Menor_Preco é logo após
 	
 - Juntando esses valores, teremos como custo na opção 1 o custo de <img src="https://user-images.githubusercontent.com/78819692/131744845-d20c8f7e-b214-4b67-88be-9096086eaa10.png" width="120"> , sendo:
 	
-	> N o número de mercados cadastrados;
+	- N o número de mercados cadastrados;
 	
-	> P a quantidade de produtos cadastrados em cada mercado;
+	- P a quantidade de produtos cadastrados em cada mercado;
 	
-	> K a quantidade de produtos escolhidos pelo usuário.
+	- K a quantidade de produtos escolhidos pelo usuário.
 	
