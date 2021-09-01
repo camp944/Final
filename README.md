@@ -35,10 +35,10 @@
 
 ## Sobre 
 
--  Nos dias atuais a necessidade de otimização do tempo tem sido primordial devido a rotina cada vez mais acelerada. Devido à essa falta de tempo, muitas das vezes, as pessoas não têm a possibilidade de comparar preços, deixando de economizar um dinheiro que parece pouco em um primeiro momento, mas que ao longo do tempo poderá fazer falta.
+  Nos dias atuais a necessidade de otimização do tempo tem sido primordial devido a rotina cada vez mais acelerada. Devido à essa falta de tempo, muitas das vezes, as pessoas não têm a possibilidade de comparar preços, deixando de economizar um dinheiro que parece pouco em um primeiro momento, mas que ao longo do tempo poderá fazer falta.
 Portanto, avaliando essa necessidade, surge a proposta de um sistema que permite a partir dos interesses de compra do usuário, a busca dos produtos de melhores preço, ecomizando tanto o tempo quanto o dinheiro desse usuário. Diante desse fato, e seguindo alguns sistemas já criado como presente nos sites [Zoom](https://www.zoom.com.br) e [Buscapé](https://www.buscape.com.br) nossa aplicação tem como objetivo buscar essa facilitação para esse usuário.<p>
 
-- Desafios a serem cumpridos:
+ Desafios a serem cumpridos:
  
  :white_check_mark: Lista dinâmica 
  
