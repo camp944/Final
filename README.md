@@ -164,7 +164,7 @@ Portanto, avaliando essa necessidade, surge a proposta de um sistema que permite
 	
 #### Leitura inicial dos arquivos .txt cadastrados
 	
-:exclamation: Trecho de código pertencente a função `Recebe_Mercado`:	
+> :exclamation: Trecho de código pertencente a função `Recebe_Mercado`:	
 
 ```sh
  while((fgets(leitor,MAX_TAM,f_Mercados)!=NULL))
@@ -216,7 +216,7 @@ Portanto, avaliando essa necessidade, surge a proposta de um sistema que permite
 		
    
 
-:exclamation: Trecho de código pertencente a função `Recebe_Produto` :
+> :exclamation: Trecho de código pertencente a função `Recebe_Produto` :
 	
 ```sh
 while(fgets(leitor,MAX_TAM,f_Mercado)!=NULL) // Le P vezes ( P = qtidade de produtos em cada mercado)
@@ -267,7 +267,7 @@ todos esses loops que irá acontecer a cada produto cadastrado, teremos o custo 
 	
  Ao escolher a opção 1_(DIGITAR PRODUTOS DA LISTA) a função chamada Consulta_Menor_Preco possui dois trechos de código no qual define seu custo computacional. O primeiro trecho refere-se a estrutura While no qual irá procurar em cada mercado o produto selecionado e adiciona-lo a uma lista estática.
 
-:exclamation: Trecho de código pertencente a função `Consulta_Menor_Preco` :
+> :exclamation: Trecho de código pertencente a função `Consulta_Menor_Preco` :
 	
 ```sh
 	
