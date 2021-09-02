@@ -77,7 +77,7 @@ int Recebe_Mercado(Mercado m[MAX],char arquivo_mercados[MAX_TAM],int cont_mercad
             printf( "      @                          @\n");
             printf( "      @      ARQUIVO ABERTO      @\n");
             printf( "      @                          @\n");
-            printf( "      @@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
+            printf( "      @@@@@@@@@@@@@@@@@@@@@@@@@@@@\n\n\n\n");
         }
         else
         {
@@ -86,7 +86,7 @@ int Recebe_Mercado(Mercado m[MAX],char arquivo_mercados[MAX_TAM],int cont_mercad
             printf( "      @                          @\n");
             printf( "      @  ARQUIVO NAO ENCONTRADO  @\n");
             printf( "      @                          @\n");
-            printf( "      @@@@@@@@@@@@@@@@@@@@@@@@@@@@\n\n");
+            printf( "      @@@@@@@@@@@@@@@@@@@@@@@@@@@@\n\n\n\n");
             fflush(stdin);
             printf("      INSIRA UM NOME PARA O ARQUIVO COM A INFORMACAO DOS MERCADOS -> ");
             fflush(stdin);
@@ -266,12 +266,7 @@ void Consulta_Menor_Preco(Mercado m[MAX],char nome[MAX_TAM],Lista_de_compras *Li
 
     if(l.tamanho==0)
     {
-        printf("\n\n");
-        printf( "      @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
-        printf( "      @                                  @\n");
-        printf( "      @      PRODUTO NAO ENCONTRADO      @\n");
-        printf( "      @                                  @\n");
-        printf( "      @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n\n");
+        printf("\n\tO produto %s nao foi encontrado!\n");
         return;
     }
 
@@ -428,13 +423,41 @@ void Gera_Guia(Lista_de_compras *l,int n_mercado,Mercado m[MAX])//Gera um arquiv
     fputs("\t @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n\n",arquivo);
     fputs("\t[Mercado]\t\t  [Pontos/10]\n\n",arquivo);
     i=0;
-    while(i<3)
+    
+    if(n_mercado<15)
     {
-        char convertido[MAX_TAM];
-        sprintf(convertido,"\t[%s]\t\t  [%.1f]\n",Ranking_Mercados.best[cont_produtos-1-i].Market,Ranking_Mercados.best[cont_produtos-1-i].valor/l->tamanho*10);
-        fputs(convertido,arquivo);
-        i++;
+        while(i<n_mercado/3)
+        {
+            char convertido[MAX_TAM];
+            sprintf(convertido,"\t[%s]\t\t  [%.1f]\n",Ranking_Mercados.best[cont_produtos-1-i].Market,Ranking_Mercados.best[cont_produtos-1-i].valor/l->tamanho*10);
+            fputs(convertido,arquivo);
+            i++;
+        }
     }
+    else
+    {
+        if(n_mercado<40)
+        {
+            while(i<n_mercado/4)
+            {
+                char convertido[MAX_TAM];
+                sprintf(convertido,"\t[%s]\t\t  [%.1f]\n",Ranking_Mercados.best[cont_produtos-1-i].Market,Ranking_Mercados.best[cont_produtos-1-i].valor/l->tamanho*10);
+                fputs(convertido,arquivo);
+                i++;
+            }
+        }
+        else
+        {
+            while(i<10)
+            {
+                char convertido[MAX_TAM];
+                sprintf(convertido,"\t[%s]\t\t  [%.1f]\n",Ranking_Mercados.best[cont_produtos-1-i].Market,Ranking_Mercados.best[cont_produtos-1-i].valor/l->tamanho*10);
+                fputs(convertido,arquivo);
+                i++;
+            }
+        }
 
+    }
+  
     fclose(arquivo);
 }

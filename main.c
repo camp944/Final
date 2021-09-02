@@ -23,6 +23,8 @@ int main() {
 	gets(arquivo_mercados);
 
 	n_Mercados=Recebe_Mercado(m,arquivo_mercados,n_Mercados); 
+
+	
 	while(select!=0)
 	{
 		menu();
@@ -62,7 +64,7 @@ int main() {
 			gets(get_lista);
 			strcat(get_lista,txt);
 			Abre_Lista_De_Compras(get_lista,&Lista_Final,m,n_Mercados);	
-			//printf("\n\t%d\n",Lista_Final.tamanho);
+			
 
 	
 		}
