@@ -35,6 +35,8 @@
 	* [Opção 1](#Opção-1)
 	
 	* [Opção 2](#Opção-2)
+
+	* [Opção 3](#Opção-3)
  <!--te-->  
 
 
@@ -364,3 +366,4 @@ Na opção 2_(INSERIR ARQUIVO COM A LISTA) se difere da opção 1 pois os produt
 	
 <h1></h1>
 	
+#### Opção 3
