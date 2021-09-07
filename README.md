@@ -32,6 +32,8 @@
 	* [Leitura inicial dos arquivos](#Leitura-inicial-dos-arquivos-txt-cadastrados)
 
 	* [Opção 1](#Opção-1)
+	
+	* [Opção 2](#Opção-2)
  <!--te-->  
 
 
@@ -297,11 +299,54 @@ A segunda parte do trecho dentro da função  Consulta_Menor_Preco é logo após
 
  `Ordena_Crescente`:  Utilizando da literatura, sabendo que essa função utiliza-se do método de ordenação <strong>QuickShort</strong>, temos como caso médio <img src="https://user-images.githubusercontent.com/78819692/131732133-5f09ebb2-607b-4059-a8f0-746f6ac8501f.png" width="70"> matematicamente provada como demostrado no site [khanacademy](https://www.khanacademy.org/computing/computer-science/algorithms/quick-sort/a/analysis-of-quicksort). Como N na equação significa a quantidade de elementos dentro dessa lista a ser ordenada e, considerando que cada mercado tem um produto do qual o usuário escolheu, podemos substituir essa variável N como sendo a quantidade de mercados cadastrados.
 	
-- Juntando esses valores, teremos como custo na opção 1 o custo de <img src="https://user-images.githubusercontent.com/78819692/131744845-d20c8f7e-b214-4b67-88be-9096086eaa10.png" width="120"> , sendo:
+- Juntando esses valores, teremos como custo na opção 1 o custo de <img src="https://user-images.githubusercontent.com/78819692/131744845-d20c8f7e-b214-4b67-88be-9096086eaa10.png" width="100"> , sendo:
 	
-	- N o número de mercados cadastrados;
+	> N o número de mercados cadastrados;
 	
-	- P a quantidade de produtos cadastrados em cada mercado;
+	> P a quantidade de produtos cadastrados em cada mercado;
 	
-	- K a quantidade de produtos escolhidos pelo usuário.
+	> K a quantidade de produtos escolhidos pelo usuário.
+	
+	
+<h1></h1>
+	
+	
+#### Opção 2
+	
+Na opção 2_(INSERIR ARQUIVO COM A LISTA) se difere da opção 1 pois os produtos a serem inseridos pelo usuário será por meio de um arquivo informando os produtos. Portanto, será feito uma tokenização desse arquivo para que assim chamar a função `Consulta_Menor_Preco` estudada na opção 1.
+	
+> :exclamation: Trecho de código pertencente a função `Abre_Lista_De_Compras` :
+	
+```sh
+ while(fgets(leitor,MAX_TAM,arquivo)!=NULL)  //3
+    {
+        char Nome[MAX_TAM];
+        int operador=0;
+        token=strtok(leitor,"->");
+
+        while(token!=NULL)
+        {   
+            strcpy(Nome,token);			
+            if(operador==0)
+            {
+                Consulta_Menor_Preco(m,Nome,Lista_Final,n_linhas);
+                operador++;                
+            }        
+            token=strtok(NULL,"->");
+        }     
+    }	
+```
+	
+- No trecho de maior custo da função, o While irá ser responsável pela tokenização da lista de compras (usando o serapador <strong>-></strong>) e a partir disso chamar a função Consulta_Menor_Preco para cada produto. No While mais interno, a cada produto na lista ele entrará 2 vezes, no qual a cada vez realizado o loop o custo será de +4 + o custo da função Consulta_Menor_Preço.
+
+- Portanto, o custo dessa função será similar ao da opção 2, contendo o acréscimo no custo computacional referente a essa tokenização  <img src="https://user-images.githubusercontent.com/78819692/132346310-54da7b5a-8b3e-4cf5-b018-34597389d542.png" width="100"> , sendo:
+	
+	> N o número de mercados cadastrados;
+	
+	> P a quantidade de produtos cadastrados em cada mercado;
+	
+	> K a quantidade de produtos escolhidos pelo usuário.
+
+	
+<h1></h1>
 	
