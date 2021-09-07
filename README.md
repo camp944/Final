@@ -70,7 +70,7 @@ Portanto, avaliando essa necessidade, surge a proposta de um sistema que permite
 
 - Execução: Foi criado um arquivo bat (compila.bat) para compilar o arquivo e não ser necessário abrir prompt.
 
-> :grey_exclamation: Criando o arquivo executável a partir do compila.bat:
+> :grey_exclamation: Criando o arquivo executável a partir do compila.bat :
 	
 ![WhatsApp Video 2021-09-07 at 12 57 28 PM](https://user-images.githubusercontent.com/78819692/132376065-cb3b814f-343b-4397-a613-1cae7eaf40bc.gif)
 
