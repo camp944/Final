@@ -1,3 +1,4 @@
+
 :construction: EM CONSTRUÇÃO :construction: 
 
 
@@ -44,11 +45,11 @@ Portanto, avaliando essa necessidade, surge a proposta de um sistema que permite
 
  - Desafios a serem cumpridos:
  
- :white_check_mark: Lista dinâmica 
+:heavy_check_mark: Lista dinâmica 
  
- :white_check_mark: Lista estática
+:heavy_check_mark: Lista estática
  
- :white_check_mark: Ordenação: QuickShort 
+:heavy_check_mark: Ordenação: QuickShort 
 
 
 ## :rocket: Como funciona
@@ -57,13 +58,26 @@ Portanto, avaliando essa necessidade, surge a proposta de um sistema que permite
 
 
 ## :computer: Pré-requisitos
+	
+- Programa feito utilizando linguaguem C 
+	
+- IDE utilizado : Visual Studio Code 
+	
+- Sistema operacional: Windows 10
+	
 
-<p>[Informar modo de execução] <p>
+- Execução: Foi criado um arquivo bat (compila.bat) para compilar o arquivo e não ser necessário abrir prompt.
+
+> :grey_exclamation: Criando o arquivo executável a partir do compila.bat:
+	
+![WhatsApp Video 2021-09-07 at 12 57 28 PM](https://user-images.githubusercontent.com/78819692/132376065-cb3b814f-343b-4397-a613-1cae7eaf40bc.gif)
+
+	
+
 
 ## :gear: Execução dos testes
 <p>Execução do programa a partir do arquivo 'teste' presente no repositório<p>
 
-![insira](https://user-images.githubusercontent.com/78819692/131023845-99c5d825-d755-445f-aaaf-d6f2bd08b7f5.png)
 
 <p>Após a abertura do arquivo .txt no qual contém os ID's e nomes dos mercados cadastrados, o programa realiza a tokenização dos nomes de cada mercado presente, (no qual contém um arquivo .txt para cada um com os dados dos produto) e faz o encaminhamento para a pasta Mercados e realiza a leitura desses arquivos.<p>
 
