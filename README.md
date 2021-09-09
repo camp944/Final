@@ -443,7 +443,7 @@ Na opção 3_(GERAR ARQUIVO COM OS MELHORES PRECOS) teremos a função ´Gera_Gu
 	
 #### Autores
 	
-- Lucas Ribeiro Silva
 - João Pedro de Almeida Campos 
+- Lucas Ribeiro Silva 
 - Thomás Teixeira Pereira
 
