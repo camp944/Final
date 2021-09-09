@@ -173,9 +173,9 @@ Portanto, avaliando essa necessidade, surge a proposta de um sistema que permite
 	
 <p>Após inserir os produtos escolhidos, seja usando a opção 1 ou a opção 2, é criado um arquivo .txt (Lista de Compras.txt) na área de trabalho contendo em qual mercado cada produto se encontra com o menor preço e o ranking dos mercados melhor avaliado de acordo com o preço dos itens selecionados.<p>
 <p> O ranking está programado a partir da quantidade de mercados cadastrados. 
-- Caso esse número for menor que 15, iremos ter o ranking dos 5 melhores mercados.
-- Caso esse número for igual ou maior que 15, iremos ter o ranking de 40% do número dos mercados cadastrados.
-- Caso tiver mais de 40 mercados cadastrados, iremos ter a quantidade fixa de 10 mercados avaliados no ranking.</p>
+ Caso esse número for menor que 15, iremos ter o ranking dos 5 melhores mercados.
+ Caso esse número for igual ou maior que 15, iremos ter o ranking de 40% do número dos mercados cadastrados.
+ Caso tiver mais de 40 mercados cadastrados, iremos ter a quantidade fixa de 10 mercados avaliados no ranking.</p>
 
 - Exemplo da Lista de Compras gerado a partir da Lista inserida na opção 2:
 	
