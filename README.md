@@ -1,10 +1,4 @@
 
-:construction: EM CONSTRUÇÃO :construction: 
-
-
-
-
-
 
 <h1 align="center"> 
  Trabalho AEDS|CEFET 
@@ -37,6 +31,9 @@
 	* [Opção 2](#Opção-2)
 
 	* [Opção 3](#Opção-3)
+
+	* [Custo total](#Custo-total)
+	
  <!--te-->  
 
 
@@ -47,10 +44,10 @@ Portanto, avaliando essa necessidade, surge a proposta de um sistema que permite
 
  - Desafios a serem cumpridos:
  
-:heavy_check_mark: Lista dinâmica 
- 
 :heavy_check_mark: Lista estática
- 
+
+:heavy_check_mark: Lista dinâmica
+
 :heavy_check_mark: Ordenação: QuickShort 
 
 
@@ -371,3 +368,72 @@ Na opção 2_(INSERIR ARQUIVO COM A LISTA) se difere da opção 1 pois os produt
 <h1></h1>
 	
 #### Opção 3
+
+Na opção 3_(GERAR ARQUIVO COM OS MELHORES PRECOS) teremos a função ´Gera_Guia´ no qual irá criar ou subscrever o arquivo Lista de compras.txt com os resultados obtidos
+	
+> :exclamation: Trecho de código pertencente a função `Gera_Guia`:
+
+	
+```sh	
+	
+    while(cont_produtos<l->tamanho) // entrara P vezes, P=qntidade de produtos na lista de compras
+    {  
+        char gera_linha[MAX_TAM]=""; //+1
+        char separador0[MAX_TAM]="   [",separador1[MAX_TAM]="\t\t[",separador2[MAX_TAM]="]"; //+1
+        int cont_op=0; //+1
+        
+        while(cont_op<3) // entrará 3 vezes //No primeiro (loop = +7) | No segundo ( loop = )
+        {   
+            if(cont_op==0) //+1
+            {   
+				strcat(gera_linha,separador0);  //+1
+                strcat(gera_linha,l->best[cont_produtos].nome_produto);  //+1
+            }
+            if(cont_op==1) //+1
+            {   
+                strcat(gera_linha,separador1);  //+1
+                strcat(gera_linha,l->best[cont_produtos].Market);  //+1
+                i=0;  //+1
+                
+                while(i<n_mercado) //entrará N/2     N = números de mercados
+                {
+                    if(strcmp(l->best[cont_produtos].Market,Ranking_Mercados.best[i].Market)==0) //+1
+                    {
+                        Ranking_Mercados.best[i].valor=Ranking_Mercados.best[i].valor+1;//+1
+                        break; //+1
+                    }
+                    i++; // +1
+                }              
+            }
+            if (cont_op==2) 
+            {
+                strcat(gera_linha,separador1);
+                char convertido[MAX_TAM];
+                strcat(gera_linha,"R$");
+            	sprintf(convertido, "%.2f", l->best[cont_produtos].valor);
+                strcat(gera_linha,convertido);
+            }
+            strcat(gera_linha,separador2);
+            cont_op++;
+        }
+        strcat(gera_linha,"\n");
+		fputs(gera_linha,arquivo);
+        cont_produtos++;
+    }	
+	
+```
+ 
+- No trecho de maior impacto em relação ao custo computacional dentro da função, teremos esse While no qual tera seus loops K vezes, sendo K = Produtos Escolhidos. Sem contar com o While interno, temos que o custo dele será de +7 a cada loop.
+
+- No Segundo While, interno ao primeiro, temos que será realizados 3 vezes seu loop. No primeiro loop, atendendo ao primeiro if, temos +7. No segundo loop, atendendo a condição do segundo if, teremos o custo de +27. No terceiro loop teremos o valor de +8. 
+
+- Portanto, somando os valores desse While por comppleto, teremos o custo de 42, sendo assim portanto <strong>42K</strong>, K= Produtos escolhidos.
+	
+<h1></h1>
+	
+#### Custo total
+	
+- Calculando cada função que irá fazer parte desse programa e, utilizando de uma exemplo no qual o usuário irá utilizar da opção 2, em que ira inserir uma lista de compras, teremos o custo computacional de: 
+	
+	![equaçãog](https://user-images.githubusercontent.com/78819692/132768951-074a0a18-a6b9-4d8c-86ef-29c35b217782.png)
+
