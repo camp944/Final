@@ -56,6 +56,7 @@ Portanto, avaliando essa necessidade, surge a proposta de um sistema que permite
 ## :rocket: Como funciona
 
 <p> Na pasta Mercados criasse arquivos .txt para cada mercado, tendo como o nome o proprio nome do mercado. Dentro desses arquivos estão os dados dos diferentes tipos de produtos cadastrados contendo o identificador, nome e preço do mesmo. Ao iniciar o programa o usuário insere um arquivo contendo as informações de todos esses mercados presente nessa pasta, no qual a partir da escolha do usuário o programa irá fazer uma busca e encontrar dentre esse mercados o produto com o menor preço e apresenta-lo a partir de um arquivo criado<p>
+<p>OBSERVAÇÃO: O diretório do programa deve estar localizado na pasta Desktop ou Documentos do usuário, para que o arquivo final seja criado.<p>
 
 
 ## :computer: Pré-requisitos
@@ -81,8 +82,7 @@ Portanto, avaliando essa necessidade, surge a proposta de um sistema que permite
 
 
 <p>Após a abertura do arquivo .txt no qual contém os ID's e nomes dos mercados cadastrados, o programa realiza a tokenização dos nomes de cada mercado presente, (no qual contém um arquivo .txt para cada um com os dados dos produto) e faz o encaminhamento para a pasta Mercados e realiza a leitura desses arquivos.<p>
-<p>OBSERVAÇÃO: O diretório do programa deve estar localizado na pasta Desktop ou Documentos do usuário, para que o arquivo final seja criado.
-<p>
+
 
 
 	
