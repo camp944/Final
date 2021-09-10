@@ -81,6 +81,9 @@ Portanto, avaliando essa necessidade, surge a proposta de um sistema que permite
 
 
 <p>Após a abertura do arquivo .txt no qual contém os ID's e nomes dos mercados cadastrados, o programa realiza a tokenização dos nomes de cada mercado presente, (no qual contém um arquivo .txt para cada um com os dados dos produto) e faz o encaminhamento para a pasta Mercados e realiza a leitura desses arquivos.<p>
+<p>OBSERVAÇÃO: O diretório do programa deve estar localizado na pasta Desktop ou Documentos do usuário, para que o arquivo final seja criado.
+<p>
+
 
 	
 ### Abertura da pasta dos arquivos
